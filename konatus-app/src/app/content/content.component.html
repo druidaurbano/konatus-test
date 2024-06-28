@@ -1,0 +1,10 @@
+<main class="flex flex-column align-items-center">
+  <p>Puxando api da opção</p>
+  <span>{{ selectedMenuItem }}</span>
+
+  <app-posts *ngIf="selectedMenuItem === 'JSON'"></app-posts>
+  <app-makeup *ngIf="selectedMenuItem === 'Maquiagem'"></app-makeup>
+  <app-cards *ngIf="selectedMenuItem === 'Jogos de cartas'"></app-cards>
+  <app-football *ngIf="selectedMenuItem === 'Futebol'"></app-football>
+</main>
+

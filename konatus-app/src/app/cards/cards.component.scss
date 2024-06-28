@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+
+  button {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+}

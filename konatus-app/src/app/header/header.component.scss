@@ -1,0 +1,19 @@
+.header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu li {
+  transition: background-color 0.3s ease;
+  a {
+    color: inherit;
+  }
+
+  &.active {
+    color: #ffffff;
+  }
+}
+
+.slider {
+  background-color: #ff6b6b;
+  transition: left 0.3s ease;
+}

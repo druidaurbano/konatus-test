@@ -1,0 +1,26 @@
+<div>
+  <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (input)="searchCards()" />
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortCards('value')">Value</th>
+        <th (click)="sortCards('suit')">Suit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let card of paginatedCards">
+        <td>{{ card.value }}</td>
+        <td>{{ card.suit }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button *ngFor="let page of [].constructor(totalPages); let i = index"
+            (click)="paginateCards(i + 1)">
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>
+
