@@ -23,7 +23,7 @@ export class MakeupComponent implements OnInit {
   currentPage: number = 1;
   productsPerPage: number = 10;
   totalPages: number = 1;
-  maxPaginationButtons: number = 10;
+  maxPaginationButtons: number = 6;
   loading: boolean = true;
 
   constructor(private apiService: ApiService) {}

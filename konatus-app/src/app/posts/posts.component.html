@@ -25,7 +25,7 @@
     </ng-template>
   </p-table>
 
-  <div class="pagination mt-3 flex column-gap-3">
+  <div class="pagination mt-3 flex column-gap-3 justify-content-center">
     <button *ngFor="let page of [].constructor(totalPages); let i = index"
             (click)="paginatePosts(i + 1)"
             [ngClass]="{'selected': currentPage === (i + 1)}"

@@ -31,7 +31,7 @@
     </ng-template>
   </p-table>
 
-  <div class="pagination mt-3 flex column-gap-3 w-12">
+  <div class="pagination mt-3 flex column-gap-3 w-12 justify-content-center">
     <button (click)="firstPage()" [disabled]="currentPage === 1"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none w-1">
       <<
@@ -40,7 +40,7 @@
             class="border-round-2xl py-1 px-2 cursor-pointer border-none w-1">
       <
     </button>
-    <div class="w-8">
+    <div class="w-8 flex justify-content-between">
       <button *ngFor="let page of getPaginationButtons()"
             (click)="paginateProducts(page)"
             [ngClass]="{'selected': currentPage === page}"

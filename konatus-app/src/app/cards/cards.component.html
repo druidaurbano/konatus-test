@@ -34,27 +34,27 @@
   </p-table>
 
   <div class="pagination mt-3 flex column-gap-3">
-    <button (click)="firstPage()" [disabled]="currentPage === 1"
+    <!-- <button (click)="firstPage()" [disabled]="currentPage === 1"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       <<
     </button>
     <button (click)="previousPage()" [disabled]="currentPage === 1"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       <
-    </button>
+    </button> -->
     <button *ngFor="let page of getPaginationButtons()"
             (click)="paginateCards(page)"
             [ngClass]="{'selected': currentPage === page}"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       {{ page }}
     </button>
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages"
+    <!-- <button (click)="nextPage()" [disabled]="currentPage === totalPages"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       >
     </button>
     <button (click)="lastPage()" [disabled]="currentPage === totalPages"
             class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       >>
-    </button>
+    </button> -->
   </div>
 </div>
