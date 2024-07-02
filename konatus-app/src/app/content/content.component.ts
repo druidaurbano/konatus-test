@@ -20,7 +20,7 @@ import { FootballComponent } from '../football/football.component';
   ]
 })
 export class ContentComponent implements OnInit{
-  selectedMenuItem: string = '';
+  selectedMenuItem: string = 'Maquiagem';
 
   constructor(private menuService: MenuService) { }
 

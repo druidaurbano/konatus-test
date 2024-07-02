@@ -1,14 +1,9 @@
 <header class="header flex justify-content-between align-items-center p-3 bg-white">
-  <div class="flex align-items-center w-1">
-    <button class="bg-surface border-none text-2xl cursor-pointer" (click)="toggleDropdown()">
-      <i class="pi pi-bars"></i>
-    </button>
-  </div>
 
-  <nav class="menu flex align-items-center justify-content-center w-10">
-    <ul class="flex relative align-items-center list-none p-0 m-0 w-6">
+  <nav class="menu flex align-items-center justify-content-center w-12">
+    <ul class="flex relative align-items-center list-none p-0 m-0 w-12">
       <li *ngFor="let menuItem of menuItems"
-          class="flex pt-2 pr-3 pb-2 pl-3 border-round-2xl cursor-pointer w-3 z-1 justify-content-center"
+          class="flex pt-2 pr-3 pb-2 pl-3 border-round-2xl cursor-pointer w-3 z-1 justify-content-center text-xs sm:text-base text-center "
           [class.active]="selected === menuItem.name" (click)="selectMenu(menuItem)">
         <a href="#" class="no-underline">{{ menuItem.name }}</a>
       </li>
@@ -18,6 +13,4 @@
     </ul>
   </nav>
 
-  <div class="bg-blue-100 w-1">
-  </div>
 </header>

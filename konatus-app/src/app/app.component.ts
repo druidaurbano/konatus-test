@@ -8,6 +8,7 @@ import { PostsComponent } from './posts/posts.component';
 import { MakeupComponent } from './makeup/makeup.component';
 import { CardsComponent } from './cards/cards.component';
 import { FootballComponent } from './football/football.component';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { FootballComponent } from './football/football.component';
     PostsComponent,
     MakeupComponent,
     CardsComponent,
-    FootballComponent
+    FootballComponent,
+    TableModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

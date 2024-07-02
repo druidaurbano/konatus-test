@@ -1,6 +1,8 @@
-<main class="flex flex-column align-items-center">
-  <p>Puxando api da opção</p>
-  <span>{{ selectedMenuItem }}</span>
+<main class="flex flex-column align-items-center row-gap-2">
+  <div class="flex flex-column align-items-center">
+    <p>Puxando dados da api</p>
+    <span>{{ selectedMenuItem }}</span>
+  </div>
 
   <app-posts *ngIf="selectedMenuItem === 'JSON'"></app-posts>
   <app-makeup *ngIf="selectedMenuItem === 'Maquiagem'"></app-makeup>

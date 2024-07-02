@@ -1,24 +1,35 @@
-<div>
-  <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (input)="searchPosts()" />
+<div class="flex flex-column row-gap-3 align-items-center">
+  <input class="w-8 border-round-2xl p-2 h-2rem mb-3 border-1 border-solid border-200 text-center"
+         type="text"
+         placeholder="Pesquisar..."
+         [(ngModel)]="searchQuery"
+         (input)="searchPosts()" />
 
-  <table class="w-full">
-    <thead>
+  <p-table [value]="paginatedPosts"
+           [paginator]="false"
+           [rows]="10"
+           [sortField]="sortField"
+           [sortOrder]="sortOrder"
+           class="w-12">
+    <ng-template pTemplate="header">
       <tr>
-        <th (click)="sortPosts('title')" class="">Title</th>
-        <th (click)="sortPosts('body')">Body</th>
+        <th pSortableColumn="title" (click)="sortPosts('title')">Title <p-sortIcon field="title"></p-sortIcon></th>
+        <th pSortableColumn="body" (click)="sortPosts('body')">Body <p-sortIcon field="body"></p-sortIcon></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of paginatedPosts">
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+      <tr>
         <td>{{ post.title }}</td>
         <td>{{ post.body }}</td>
       </tr>
-    </tbody>
-  </table>
+    </ng-template>
+  </p-table>
 
-  <div class="pagination">
+  <div class="pagination mt-3 flex column-gap-3">
     <button *ngFor="let page of [].constructor(totalPages); let i = index"
-            (click)="paginatePosts(i + 1)">
+            (click)="paginatePosts(i + 1)"
+            [ngClass]="{'selected': currentPage === (i + 1)}"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
       {{ i + 1 }}
     </button>
   </div>

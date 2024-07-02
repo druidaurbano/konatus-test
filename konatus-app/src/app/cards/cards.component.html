@@ -1,26 +1,60 @@
-<div>
-  <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (input)="searchCards()" />
+<div class="flex flex-column row-gap-3 align-items-center">
+  <div *ngIf="loading" class="loading-animation">
+    <i class="pi pi-spinner pi-spin" style="font-size: 2rem;"></i>
+  </div>
+  <div *ngIf="!loading" class="p-input-icon-left w-12 flex align-items-center flex-column">
+    <input class="w-8 border-round-2xl p-2 h-2rem mb-3 border-1 border-solid border-200 text-center"
+           type="text"
+           placeholder="Pesquisar..."
+           [(ngModel)]="searchQuery"
+           (input)="searchCards()" />
+  </div>
 
-  <table>
-    <thead>
+  <p-table [value]="paginatedCards"
+           [paginator]="false"
+           [rows]="10"
+           [sortField]="sortField"
+           [sortOrder]="sortOrder"
+           (onSort)="onSort($event)"
+           (onPage)="onPage($event)"
+           class="w-12">
+
+    <ng-template pTemplate="header">
       <tr>
-        <th (click)="sortCards('value')">Value</th>
-        <th (click)="sortCards('suit')">Suit</th>
+        <th pSortableColumn="value">Value <p-sortIcon field="value"></p-sortIcon></th>
+        <th pSortableColumn="suit">Suit <p-sortIcon field="suit"></p-sortIcon></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let card of paginatedCards">
+    </ng-template>
+    <ng-template pTemplate="body" let-card>
+      <tr>
         <td>{{ card.value }}</td>
         <td>{{ card.suit }}</td>
       </tr>
-    </tbody>
-  </table>
+    </ng-template>
+  </p-table>
 
-  <div class="pagination">
-    <button *ngFor="let page of [].constructor(totalPages); let i = index"
-            (click)="paginateCards(i + 1)">
-      {{ i + 1 }}
+  <div class="pagination mt-3 flex column-gap-3">
+    <button (click)="firstPage()" [disabled]="currentPage === 1"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
+      <<
+    </button>
+    <button (click)="previousPage()" [disabled]="currentPage === 1"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
+      <
+    </button>
+    <button *ngFor="let page of getPaginationButtons()"
+            (click)="paginateCards(page)"
+            [ngClass]="{'selected': currentPage === page}"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
+      {{ page }}
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
+      >
+    </button>
+    <button (click)="lastPage()" [disabled]="currentPage === totalPages"
+            class="border-round-2xl py-1 px-2 cursor-pointer border-none">
+      >>
     </button>
   </div>
 </div>
-

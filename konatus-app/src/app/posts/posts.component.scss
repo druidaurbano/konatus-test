@@ -1,29 +1,11 @@
-table {
-  border-collapse: collapse;
-
-  th, td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: left;
-    cursor: pointer;
-  }
-
-  th {
-    background-color: #f4f4f4;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-}
-
 .pagination {
-  margin-top: 10px;
-  display: flex;
-  gap: 5px;
-
   button {
-    padding: 5px 10px;
-    cursor: pointer;
+    transition: background-color 0.3s ease; // adiciona uma transição suave
+
+    &.selected {
+      background-color: #ff6b6b; // cor de fundo do botão selecionado
+      color: white; // cor do texto do botão selecionado
+    }
   }
 }
+

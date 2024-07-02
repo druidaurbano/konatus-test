@@ -1,38 +1,41 @@
-import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './posts.component.html',
-  styleUrl: './posts.component.scss'
+  styleUrls: ['./posts.component.scss'],
+  imports: [CommonModule, FormsModule, TableModule]
 })
 export class PostsComponent implements OnInit {
+
   posts: any[] = [];
   filteredPosts: any[] = [];
   searchQuery: string = '';
-  sortOrder: string = 'asc';
+  sortOrder: number = 1; // 1 for asc and -1 for desc
+  sortField: string = '';
   currentPage: number = 1;
   postsPerPage: number = 10;
   totalPages: number = 1;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   async ngOnInit() {
     try {
       this.posts = await this.apiService.getPosts();
       this.filteredPosts = this.posts;
       this.calculateTotalPages();
-    } catch(error) {
+    } catch (error) {
       console.error('Erro ao buscar posts', error);
     }
   }
 
   searchPosts() {
-    if(this.searchQuery) {
+    if (this.searchQuery) {
       this.filteredPosts = this.posts.filter(post =>
         post.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         post.body.toLowerCase().includes(this.searchQuery.toLowerCase())
@@ -40,17 +43,17 @@ export class PostsComponent implements OnInit {
     } else {
       this.filteredPosts = this.posts;
     }
-
     this.calculateTotalPages();
   }
 
-  sortPosts(column: string) {
+  sortPosts(field: string) {
+    this.sortField = field;
+    this.sortOrder = this.sortOrder === 1 ? -1 : 1;
     this.filteredPosts.sort((a, b) => {
-      const aValue = a[column];
-      const bValue = b[column];
-      return this.sortOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+      const aValue = a[field];
+      const bValue = b[field];
+      return this.sortOrder === 1 ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
     });
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
   }
 
   paginatePosts(page: number) {
